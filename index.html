@@ -247,7 +247,7 @@
 
 <div class="wrap">
   <nav>
-    <a class="mark" href="#top">VVSR</a>
+    <a class="mark" href="#top">VeerVSR</a>
     <div class="links">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -577,7 +577,7 @@
     }
 
     try {
-      var saved = localStorage.getItem('vvsr-theme');
+      var saved = localStorage.getItem('veervsr-theme');
       if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
     } catch (e) {}
     readColors();
@@ -586,7 +586,7 @@
     document.getElementById('theme').addEventListener('click', function () {
       var next = effective() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      try { localStorage.setItem('vvsr-theme', next); } catch (e) {}
+      try { localStorage.setItem('veervsr-theme', next); } catch (e) {}
       readColors();
       setLabel();
       redraw();
