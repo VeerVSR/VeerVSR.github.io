@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Veer Vikram Singh Rana, AI/ML undergraduate working on computer vision, geospatial analytics and AI agents.">
+<title>Veer Vikram Singh Rana</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout concept: a computer-vision "detection frame" opens the page; below it,
+     a two-column ledger (label left, content right) with hairline rules, like an annotation sheet. */
+  :root {
+    --bg: #EDF0F5;
+    --surface: #F8F9FC;
+    --fg: #0E1626;
+    --muted: #53607A;
+    --line: #C7CFDC;
+    --accent: #2A44EE;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #DDE3FF;
+
+    --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0A0F1E;
+      --surface: #111830;
+      --fg: #E7EBF5;
+      --muted: #96A3BD;
+      --line: #252F4A;
+      --accent: #8199FF;
+      --accent-ink: #0A0F1E;
+      --accent-soft: #1B2447;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0A0F1E;
+    --surface: #111830;
+    --fg: #E7EBF5;
+    --muted: #96A3BD;
+    --line: #252F4A;
+    --accent: #8199FF;
+    --accent-ink: #0A0F1E;
+    --accent-soft: #1B2447;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-block: 20px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .wrap { max-width: 1040px; margin-inline: auto; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+
+  .mono { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; }
+
+  /* nav */
+  nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px 24px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  nav .mark { font-family: var(--font-display); font-weight: 800; font-stretch: 110%; letter-spacing: 0.02em; color: var(--fg); text-decoration: none; }
+  nav ul { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+  nav ul a { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  nav ul a:hover { color: var(--accent); }
+
+  /* hero */
+  .hero { padding-block: clamp(40px, 8vw, 88px) clamp(32px, 6vw, 64px); }
+  .kicker { color: var(--muted); text-transform: uppercase; margin-bottom: 40px; }
+  .frame { position: relative; border: 2px solid var(--accent); padding: clamp(22px, 4.5vw, 48px); background: var(--surface); }
+  .frame .tag { position: absolute; left: -2px; top: 0; transform: translateY(-100%); background: var(--accent); color: var(--accent-ink); padding: 3px 10px; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.05em; }
+  .frame .h { position: absolute; width: 10px; height: 10px; background: var(--accent); }
+  .frame .h.tl { left: -6px; top: -6px; }
+  .frame .h.tr { right: -6px; top: -6px; }
+  .frame .h.bl { left: -6px; bottom: -6px; }
+  .frame .h.br { right: -6px; bottom: -6px; }
+  h1 { margin: 0; font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: clamp(2.2rem, 7.2vw, 4.9rem); line-height: 1.02; letter-spacing: -0.01em; text-wrap: balance; }
+  .lede { margin-top: 24px; max-width: 62ch; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: var(--fg); }
+  .roles { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+  .roles li { border: 1px dashed var(--accent); color: var(--accent); padding: 3px 10px; font-family: var(--font-mono); font-size: 0.76rem; letter-spacing: 0.04em; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .btn { display: inline-block; padding: 10px 18px; font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--accent); }
+  .btn.solid { background: var(--accent); color: var(--accent-ink); }
+  .btn.ghost { color: var(--accent); background: transparent; }
+  .btn:hover { opacity: 0.88; }
+
+  /* ledger sections */
+  section.row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 20px 40px; padding-block: 40px; border-top: 1px solid var(--line); }
+  .label h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-stretch: 105%; font-size: 1.35rem; line-height: 1.2; text-wrap: balance; }
+  .label p { margin-top: 6px; color: var(--muted); }
+  .body { min-width: 0; }
+  .body > * + * { margin-top: 28px; }
+
+  h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-stretch: 100%; font-size: 1.2rem; line-height: 1.3; text-wrap: balance; }
+  .meta { color: var(--muted); margin-top: 4px; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .stack li { background: var(--accent-soft); color: var(--fg); padding: 2px 9px; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.03em; }
+  .points { margin-top: 14px; display: grid; gap: 9px; }
+  .points li { position: relative; padding-left: 18px; max-width: 70ch; }
+  .points li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 8px; height: 2px; background: var(--accent); }
+
+  .item { padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .item-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 20px; }
+  .item-head .when { color: var(--muted); white-space: nowrap; }
+
+  /* metrics */
+  .metrics { margin-top: 18px; display: grid; gap: 10px; max-width: 520px; padding: 16px; border: 1.5px solid var(--accent); background: var(--surface); position: relative; }
+  .metrics .cap { position: absolute; left: -1.5px; top: 0; transform: translateY(-100%); background: var(--accent); color: var(--accent-ink); padding: 2px 9px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.05em; }
+  .metric { display: grid; grid-template-columns: 78px minmax(0, 1fr) 54px; align-items: center; gap: 12px; }
+  .metric span { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+  .metric .track { height: 8px; background: var(--accent-soft); }
+  .metric .track i { display: block; height: 100%; background: var(--accent); }
+  .metric b { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+
+  /* lists */
+  .results { display: grid; }
+  .results li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+  .results li:first-child { padding-top: 0; }
+  .results li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .place { font-family: var(--font-display); font-weight: 800; font-stretch: 110%; color: var(--accent); font-size: 1.05rem; line-height: 1.3; }
+  .results strong { font-weight: 600; }
+  .results p { color: var(--muted); }
+
+  .skills { display: grid; }
+  .skills li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 4px 20px; padding-block: 11px; border-bottom: 1px solid var(--line); }
+  .skills li:first-child { padding-top: 0; }
+  .skills li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .skills .k { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+
+  .interests { display: flex; flex-wrap: wrap; gap: 8px; }
+  .interests li { border: 1px solid var(--line); background: var(--surface); padding: 5px 12px; font-size: 0.92rem; }
+
+  .repos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .repo { display: block; padding: 16px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--fg); min-width: 0; }
+  .repo:hover { border-color: var(--accent); }
+  .repo .name { font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent); overflow-wrap: anywhere; }
+  .repo p { margin-top: 6px; color: var(--muted); font-size: 0.92rem; }
+  .repo .lang { margin-top: 10px; font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); }
+
+  /* contact */
+  .contact-list { display: grid; }
+  .contact-list li { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; align-items: center; gap: 8px 16px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+  .contact-list li:first-child { padding-top: 0; }
+  .contact-list .k { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+  .contact-list .v { overflow-wrap: anywhere; user-select: all; }
+  .copy { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.05em; text-transform: uppercase; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 4px 10px; cursor: pointer; min-width: 74px; }
+  .copy:hover { background: var(--accent); color: var(--accent-ink); }
+  .elsewhere { display: flex; flex-wrap: wrap; gap: 10px 22px; }
+  .elsewhere a { font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 18px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 20px; }
+
+  @media (max-width: 760px) {
+    section.row { grid-template-columns: minmax(0, 1fr); padding-block: 32px; }
+    .kicker { margin-bottom: 32px; }
+    .results li, .skills li { grid-template-columns: minmax(0, 1fr); }
+    .contact-list li { grid-template-columns: minmax(0, 1fr) auto; }
+    .contact-list .k { grid-column: 1 / -1; }
+    .metric { grid-template-columns: 70px minmax(0, 1fr) 50px; gap: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="mark" href="#top">VVSR</a>
+    <ul>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <p class="kicker mono">B.Tech CSE (AI-ML) &middot; Amity University, Punjab &middot; 2023 to 2027</p>
+    <div class="frame">
+      <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
+      <span class="tag">engineer 0.97</span>
+      <h1>Veer Vikram Singh Rana</h1>
+      <p class="lede">AI and machine learning undergraduate working across computer vision, geospatial analytics and backend systems. I build real-time AI systems, REST APIs and software that scales, through internships, research-oriented projects and national-level hackathons.</p>
+      <ul class="roles">
+        <li>Computer Vision</li>
+        <li>Geospatial Analytics</li>
+        <li>AI Agents</li>
+        <li>Backend / REST APIs</li>
+      </ul>
+      <div class="cta">
+        <a class="btn solid" href="#projects">See projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="row" id="experience">
+    <div class="label">
+      <h2>Experience</h2>
+    </div>
+    <div class="body">
+      <article class="item">
+        <div class="item-head">
+          <h3>SWE Intern, India Meteorological Department</h3>
+          <span class="when mono">June 2025 to August 2025</span>
+        </div>
+        <p class="meta">IMD, Chandigarh</p>
+        <ul class="points">
+          <li>Developed a geospatial weather warning analysis platform covering 20+ districts across Punjab and Haryana.</li>
+          <li>Designed Flask-based REST APIs for processing meteorological warning datasets.</li>
+          <li>Implemented polygon intersection algorithms to identify affected regions in real time.</li>
+          <li>Built interactive weather visualization maps using GeoJSON and geospatial datasets.</li>
+          <li>Automated DOCX and PDF weather bulletin generation, reducing manual reporting effort by about 70%.</li>
+          <li>Processed and validated meteorological datasets to keep data quality high for downstream spatial analysis pipelines.</li>
+          <li>Worked with operational teams to improve weather alert reporting workflows.</li>
+        </ul>
+        <ul class="stack">
+          <li>Flask</li><li>REST APIs</li><li>GeoJSON</li><li>Python</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="row" id="projects">
+    <div class="label">
+      <h2>Projects</h2>
+    </div>
+    <div class="body">
+      <article class="item">
+        <h3>Real-Time Pothole Detection &amp; Severity System</h3>
+        <ul class="stack">
+          <li>YOLOv8</li><li>Intel MiDaS</li><li>CUDA</li><li>OpenCV</li>
+        </ul>
+        <ul class="points">
+          <li>End-to-end computer vision pipeline for real-time pothole detection, depth estimation and severity classification (Low, Medium, High).</li>
+          <li>Curated and annotated a dataset of 1400+ images to train a custom YOLOv8 model.</li>
+          <li>Integrated Intel MiDaS for depth analysis and added CLAHE enhancement so the system holds up in low light.</li>
+          <li>Optimized GPU-accelerated inference with CUDA on a GTX 1650 and built the real-time monitoring and visualization dashboard.</li>
+        </ul>
+        <div class="metrics" role="group" aria-label="Model results">
+          <span class="cap">custom YOLOv8 results</span>
+          <div class="metric"><span>mAP@0.5</span><div class="track"><i style="width:81.3%"></i></div><b>81.3%</b></div>
+          <div class="metric"><span>Precision</span><div class="track"><i style="width:84.1%"></i></div><b>84.1%</b></div>
+          <div class="metric"><span>Recall</span><div class="track"><i style="width:72.2%"></i></div><b>72.2%</b></div>
+        </div>
+      </article>
+
+      <article class="item">
+        <h3>Autonomous DB Agent: Self-Healing SQL</h3>
+        <ul class="stack">
+          <li>LangChain</li><li>Streamlit</li><li>SQLite</li><li>Pandas</li><li>Pydantic</li><li>Gemini</li><li>Groq</li>
+        </ul>
+        <ul class="points">
+          <li>Autonomous ReAct agent that turns natural language into executable SQLite queries and Pandas expressions across relational databases and Excel files.</li>
+          <li>Streamlit dashboard with a live ReAct reasoning trace, dynamic data source switching and a read-only SQL playground.</li>
+          <li>Self-healing reflection loop that uses Pydantic structured outputs to diagnose runtime tracebacks and repair failed queries iteratively.</li>
+          <li>Explainable AI telemetry that records query rationale, schema assumptions, confidence scores and retry audit logs.</li>
+          <li>Execution security through Python AST whitelist validation, with multi-LLM routing across Google Gemini and Groq APIs.</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <h3>Agile Project Management using Jira</h3>
+        <ul class="stack">
+          <li>Jira</li><li>Scrum</li><li>Kanban</li>
+        </ul>
+        <ul class="points">
+          <li>Built and configured an end-to-end Jira workflow from scratch, applying Agile principles and Scrum practices.</li>
+          <li>Managed product backlogs, user stories, task prioritization, sprint planning, sprint execution and progress tracking.</li>
+          <li>Configured Jira issues, task statuses and board workflows to keep progress transparent across development stages.</li>
+          <li>Practiced the Scrum Master role, Kanban boards and team collaboration, including sprint reviews and continuous improvement.</li>
+        </ul>
+      </article>
+
+      <div>
+        <h3>More on GitHub</h3>
+        <div class="repos" style="margin-top:16px">
+          <a class="repo" href="https://github.com/VeerVSR/Weather-Warning-Analysis-Tool" target="_blank" rel="noopener">
+            <span class="name">Weather-Warning-Analysis-Tool</span>
+            <p>Weather warning analysis tool built in Python.</p>
+            <p class="lang">Python</p>
+          </a>
+          <a class="repo" href="https://github.com/VeerVSR/gpu-image-upscaler" target="_blank" rel="noopener">
+            <span class="name">gpu-image-upscaler</span>
+            <p>GPU-accelerated image upscaling experiments.</p>
+            <p class="lang">Jupyter Notebook</p>
+          </a>
+          <a class="repo" href="https://github.com/VeerVSR" target="_blank" rel="noopener">
+            <span class="name">github.com/VeerVSR</span>
+            <p>All public repositories, contributions and experiments.</p>
+            <p class="lang">GitHub profile</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="achievements">
+    <div class="label">
+      <h2>Hackathons &amp; Achievements</h2>
+    </div>
+    <div class="body">
+      <ul class="results">
+        <li>
+          <span class="place">1st place</span>
+          <div><strong>VibeCraft HealthTech Hackathon</strong><p>Developed an AI-powered healthcare kiosk for rural healthcare accessibility.</p></div>
+        </li>
+        <li>
+          <span class="place">2nd place</span>
+          <div><strong>Smart India Hackathon (SIH) 2024</strong><p>Developed Garud-Nirdeshak, a disaster response platform.</p></div>
+        </li>
+        <li>
+          <span class="place">Top 10 of 40+</span>
+          <div><strong>Hack Celestia 2025</strong><p>Competed in a 48-hour national-level hackathon as Team Code5ive.</p></div>
+        </li>
+        <li>
+          <span class="place">3rd place</span>
+          <div><strong>Sangathan Inter-College Sports Meet</strong><p>Volleyball.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" id="skills">
+    <div class="label">
+      <h2>Skills</h2>
+    </div>
+    <div class="body">
+      <ul class="skills">
+        <li><span class="k">Languages</span><span>C/C++, Python</span></li>
+        <li><span class="k">Core CS</span><span>Data Structures, Algorithms, EDA, Software Engineering</span></li>
+        <li><span class="k">AI / ML</span><span>NumPy, Pandas, Matplotlib, OpenCV, YOLO</span></li>
+        <li><span class="k">Databases</span><span>MySQL, PostgreSQL</span></li>
+        <li><span class="k">Backend</span><span>Flask, REST APIs</span></li>
+        <li><span class="k">Tools</span><span>Git, GitHub, Nginx</span></li>
+      </ul>
+      <div>
+        <h3>Technical interests</h3>
+        <ul class="interests" style="margin-top:14px">
+          <li>AI &amp; Machine Learning</li>
+          <li>Computer Vision</li>
+          <li>Deep Learning</li>
+          <li>LLMs &amp; Generative AI</li>
+          <li>NLP</li>
+          <li>AI Agents</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="row" id="certifications">
+    <div class="label">
+      <h2>Certifications</h2>
+    </div>
+    <div class="body">
+      <ul class="results">
+        <li>
+          <span class="place" style="font-size:.95rem">Security</span>
+          <div><strong>Hack and Defend</strong> <span class="meta">Technometer Club, Amity University Punjab</span><p>Ethical hacking, web security, IoT security and cybersecurity fundamentals.</p></div>
+        </li>
+        <li>
+          <span class="place" style="font-size:.95rem">Web</span>
+          <div><strong>Modern Website Development with AI</strong> <span class="meta">Gravity Coding &amp; Unstop</span><p>AI-assisted web development, modern frontend development and AI productivity tools.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" id="teamwork">
+    <div class="label">
+      <h2>Leadership &amp; Collaboration</h2>
+    </div>
+    <div class="body">
+      <ul class="points" style="margin-top:0">
+        <li>Contributed to AI, computer vision and full-stack development across multiple project teams.</li>
+        <li>Worked in multidisciplinary teams of 3 to 6 members across hackathons and academic projects.</li>
+        <li>Presented project solutions to industry mentors, evaluators and faculty panels.</li>
+        <li>Prototyped quickly and worked in agile cycles under strict hackathon deadlines.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="row" id="contact">
+    <div class="label">
+      <h2>Contact</h2>
+      <p>Open to SDE and AI/ML roles, internships and collaboration.</p>
+    </div>
+    <div class="body">
+      <ul class="contact-list">
+        <li>
+          <span class="k">Email</span>
+          <span class="v" id="c-email">vsrveer25@gmail.com</span>
+          <button class="copy" type="button" data-copy="vsrveer25@gmail.com" data-target="c-email">Copy</button>
+        </li>
+        <li>
+          <span class="k">Phone</span>
+          <span class="v" id="c-phone">+91 8427321974</span>
+          <button class="copy" type="button" data-copy="+91 8427321974" data-target="c-phone">Copy</button>
+        </li>
+      </ul>
+      <div class="elsewhere">
+        <a href="https://www.linkedin.com/in/veer-vsr-0a821931b/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/VeerVSR" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://leetcode.com/u/VeerVSR/" target="_blank" rel="noopener">LeetCode</a>
+        <a href="https://www.geeksforgeeks.org/user/veervsr/" target="_blank" rel="noopener">GeeksforGeeks</a>
+        <a href="https://www.hackerrank.com/profile/VeerVSR" target="_blank" rel="noopener">HackerRank</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="mono">
+    <span>&copy; 2026 Veer Vikram Singh Rana</span>
+    <span>B.Tech CSE (AI-ML), CGPA 7.90 after 6th semester</span>
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = original; }, 1600); }
+      function selectText() {
+        var el = document.getElementById(btn.dataset.target);
+        if (el) {
+          var range = document.createRange();
+          range.selectNodeContents(el);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        done('Selected');
+      }
+      try {
+        navigator.clipboard.writeText(btn.dataset.copy).then(function () { done('Copied'); }, selectText);
+      } catch (e) { selectText(); }
+    });
+  });
+</script>
+</body>
+</html>
